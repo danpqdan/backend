@@ -2,7 +2,7 @@ import os
 import sqlite3
 
 class Conexao:
-    def __init__(self, db_name="comercial.db"):
+    def __init__(self, db_name="filme.db"):
         self.db_folder = os.getenv("DB_FOLDER", "./data")
         os.makedirs(self.db_folder, exist_ok=True) 
         self.db_file = os.path.join(self.db_folder, db_name)
