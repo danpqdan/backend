@@ -8,11 +8,11 @@ filmeService = FilmeService()
 
 filme_router = APIRouter(prefix="/filmes", tags=["Filmes"])
 
-@filme_router.post("/", response_model=Filme)
+@filme_router.post("", response_model=Filme)
 def criar_filme(filme: Filme):
     try:
         return JSONResponse(
-            content={"message": "Filme adicionado com sucesso","filme": filme.model_dump()},
+            content={"message": "Filme adicionado com sucesso","filme": filme.model_dump(exclude={"id"})},
             status_code=201
         )
     except ValidationError as e:

@@ -15,3 +15,7 @@ def lifespan(app: FastAPI):
 app = FastAPI(title="CRUD de Filmes", version="1.0", lifespan=lifespan)
 
 app.include_router(filme_router)
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
