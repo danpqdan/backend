@@ -22,6 +22,16 @@ def retornar_filmes():
             status_code=500,
             detail="Ocorreu um erro inesperado. Por favor, tente novamente mais tarde."
         )
+    
+@filme_router.get("/{id}", response_model=Filme)
+def retornar_um_filme(id: int):
+    try:
+        filme = FilmeService.buscar_filme_por_id(id)
+        if not filme:
+            raise HTTPException(status_code=404, detail="Filme não encontrado")
+        return filme
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Erro ao buscar filme: {str(e)}")
 
 @filme_router.post("", response_model=Filme)
 def criar_filme(filme: Filme):

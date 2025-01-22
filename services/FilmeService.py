@@ -1,7 +1,7 @@
 from pydantic import ValidationError
 from entities.Filmes import Filme
 from interfaces.FilmeDB import Conexao
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 class FilmeService:
 
     @staticmethod
@@ -16,6 +16,18 @@ class FilmeService:
         except Exception as e:
             return f'Erro ao consultar lista de filme: {str(e)}'
 
+    @staticmethod
+    def buscar_filme_por_id(id: int) -> Optional[Filme]:
+        try:
+            conexão = Conexao()
+            sql = "SELECT * FROM Filme WHERE id = ?"
+            filme = conexão.consultar_um(sql, (id,))
+            if filme:
+                return Filme(id=filme[0], titulo=filme[1], descricao=filme[2], ano=filme[3])
+            return None
+        except Exception as e:
+            print(f"Erro ao buscar filme por ID: {str(e)}")
+            return None
 
     @staticmethod
     def adicionar_filme(values: Tuple[str, str, int]):
