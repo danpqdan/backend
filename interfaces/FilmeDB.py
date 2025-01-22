@@ -46,7 +46,7 @@ class Conexao:
             return False
         return True
 
-    def consultar(self, sql, params=None):
+    def consultar_um(self, sql, params=None):
         try:
             cursor = self.db.cursor()
             cursor.execute(sql, params or [])
@@ -56,7 +56,7 @@ class Conexao:
             print(f"Erro ao consultar no banco: {e}")
             return None
 
-    def consultar_tree(self, sql, params=None):
+    def consultar_lista(self, sql, params=None):
         try:
             cursor = self.db.cursor()
             cursor.execute(sql, params or [])
