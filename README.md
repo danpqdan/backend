@@ -40,7 +40,7 @@ docker compose up
 
 3. 2. Acesse a documentação via navegador:
 ```bash
-http://0.0.0.0:8002/docs
+http://0.0.0.0:8000/docs
 ```
 
 3. 3. Realizando seu primeiro post via terminal:
